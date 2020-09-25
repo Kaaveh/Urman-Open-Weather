@@ -1,6 +1,7 @@
 package ir.kaaveh.urmanopenweather.repository.db;
 
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -13,5 +14,5 @@ interface WeatherDao {
     fun upsert(weatherEntry: WeatherResponse)
 
     @Query("SELECT * FROM weather_info")
-    fun getWeather(): WeatherResponse
+    fun getWeather(): LiveData<WeatherResponse>
 }
