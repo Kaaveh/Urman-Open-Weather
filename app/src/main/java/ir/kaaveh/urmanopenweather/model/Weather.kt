@@ -1,6 +1,7 @@
 package ir.kaaveh.urmanopenweather.model
 
 
+import androidx.room.Embedded
 import com.google.gson.annotations.SerializedName
 
 data class Weather(
@@ -10,8 +11,8 @@ data class Weather(
     val humidity: Int,
     val temp: Double,
     val visibility: Int,
-    @SerializedName("weather")
-    val weatherInfo: List<WeatherInfo>,
+    @Embedded(prefix = "weather")
+    val weather: List<WeatherInfo>,
     @SerializedName("wind_deg")
     val windDeg: Int,
     @SerializedName("wind_speed")

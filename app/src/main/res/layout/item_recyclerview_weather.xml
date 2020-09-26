@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="weather"
+            type="ir.kaaveh.urmanopenweather.model.Weather" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -23,7 +25,7 @@
                 android:id="@+id/txt_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sunny"
+                android:text="@{weather.weather.get(0).description, default=Sunny}"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txt_rank"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +36,7 @@
                 android:id="@+id/txt_rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="20.1"
+                android:text="@{Double.toString(weather.temp), default=20.1}"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintEnd_toEndOf="@+id/txt_name"
                 app:layout_constraintStart_toStartOf="@+id/txt_name"
@@ -44,6 +46,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="92dp"
                 android:layout_height="wrap_content"
+                app:imageUrl="@{weather.weather.get(0).icon}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

@@ -11,13 +11,10 @@ const val WEATHER_ID = 0
 @Entity(tableName = "weather_info")
 data class WeatherResponse(
     @Embedded(prefix = "current_weather_")
-    @ColumnInfo(name = "current_weather")
-    @SerializedName("current")
-    val currentWeather: Weather,
+    val current: Weather,
 
     @Embedded(prefix = "future_weather_")
-    @ColumnInfo(name = "future_weather")
-    val hourlyFutureWeather: List<Weather>
+    val hourly: List<Weather>
 ) {
     @PrimaryKey(autoGenerate = false)
     var id: Int = WEATHER_ID

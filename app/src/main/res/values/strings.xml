@@ -2,4 +2,7 @@
     <string name="app_name">Urman Open Weather</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="loading">Loading</string>
+    <string name="img_condition_description">Image of weather condition</string>
+    <string name="see_future_days">See future days</string>
 </resources>
