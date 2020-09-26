@@ -28,6 +28,7 @@ class MainFragment : Fragment() {
         val weatherViewModel: WeatherViewModel by viewModels()
         weatherViewModel.weather.observe(viewLifecycleOwner, { newWeather ->
             binding.weather = newWeather.current
+            binding.groupLoading.visibility = View.GONE
         })
 
         navController = Navigation.findNavController(binding.root)
