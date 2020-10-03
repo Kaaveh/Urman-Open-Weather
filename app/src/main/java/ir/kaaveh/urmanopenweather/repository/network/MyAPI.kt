@@ -1,16 +1,13 @@
 package ir.kaaveh.urmanopenweather.repository.network
 
 import ir.kaaveh.urmanopenweather.model.WeatherResponse
-import kotlinx.coroutines.Deferred
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 interface MyAPI {
     @GET("onecall?lat=37.5498&lon=45.0786&exclude=daily&appid=626702989faabae418f5dbe4db78dbab&units=metric&lang=fa")
-    suspend fun getWeatherAsync():
-            Deferred<WeatherResponse>
+    suspend fun getWeather(): WeatherResponse
 
     companion object {
         operator fun invoke(): MyAPI {

@@ -3,22 +3,26 @@ package ir.kaaveh.urmanopenweather.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import ir.kaaveh.urmanopenweather.model.WeatherResponse
+import ir.kaaveh.urmanopenweather.model.Weather
 import ir.kaaveh.urmanopenweather.repository.WeatherRepository
-import kotlinx.coroutines.launch
 
 class WeatherViewModel(
-    private val weatherRepository: WeatherRepository
+    weatherRepository: WeatherRepository
 ) : ViewModel() {
-    private var _weather = MutableLiveData<WeatherResponse>()
+    private var _currentWeather = MutableLiveData<Weather>()
+    val currentWeather: LiveData<Weather>
+        get() = _currentWeather
+
+    private var _forecastWeather = MutableLiveData<List<Weather>>()
+    val forecastWeather: LiveData<List<Weather>>
+        get() = _forecastWeather
 
     init {
-        viewModelScope.launch {
-            _weather = weatherRepository.getCurrentWeather() as MutableLiveData<WeatherResponse>
+        weatherRepository.currentWeather.observeForever {
+            _currentWeather.postValue(it)
+        }
+        weatherRepository.forecastWeathers.observeForever {
+            _forecastWeather.postValue(it)
         }
     }
-
-    val weather: LiveData<WeatherResponse>
-        get() = _weather
 }

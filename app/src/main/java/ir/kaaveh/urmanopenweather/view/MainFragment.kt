@@ -7,15 +7,16 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import ir.kaaveh.urmanopenweather.R
 import ir.kaaveh.urmanopenweather.databinding.FragmentMainBinding
+import ir.kaaveh.urmanopenweather.repository.WeatherRepository
+import ir.kaaveh.urmanopenweather.repository.db.WeatherDatabase
+import ir.kaaveh.urmanopenweather.repository.network.WeatherNetworkDataSource
 import ir.kaaveh.urmanopenweather.viewmodel.WeatherViewModel
+import ir.kaaveh.urmanopenweather.viewmodel.WeatherViewModelFactory
 
 class MainFragment : Fragment() {
-
-    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,15 +26,19 @@ class MainFragment : Fragment() {
         val binding: FragmentMainBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
 
-        val weatherViewModel: WeatherViewModel by viewModels()
-        weatherViewModel.weather.observe(viewLifecycleOwner, { newWeather ->
-            binding.weather = newWeather.current
+        val application = requireNotNull(this.activity).application
+        val dataSource = WeatherDatabase.getInstance(application)
+        val weatherViewModelFactory =
+            WeatherViewModelFactory(WeatherRepository(WeatherNetworkDataSource(), dataSource))
+        val weatherViewModel: WeatherViewModel by viewModels { weatherViewModelFactory }
+
+        weatherViewModel.currentWeather.observe(viewLifecycleOwner, { newWeather ->
+            binding.weather = newWeather
             binding.groupLoading.visibility = View.GONE
         })
 
-        navController = Navigation.findNavController(binding.root)
         binding.btnFutureWeather.setOnClickListener {
-            navController.navigate(R.id.action_mainFragment_to_detailFragment)
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment())
         }
 
         return binding.root
