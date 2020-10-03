@@ -1,7 +1,8 @@
-# Urman-Open-Weather
+# Urman Open Weather
 
-This is my test for interview.
-This app, fetch weather data from openweathermap.org
+This is my test for interview with Urman Co.
+
+This app, fetch weather data from openweathermap.org API.
 
 Using:
 - Kotlin
