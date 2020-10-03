@@ -14,6 +14,7 @@ Using:
 - Coroutine
 - Navigation
 - ROOM
+- WorkManager
 
 # Screenshot
 
