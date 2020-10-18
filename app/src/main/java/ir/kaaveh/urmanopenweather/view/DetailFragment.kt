@@ -17,10 +17,6 @@ import ir.kaaveh.urmanopenweather.viewmodel.WeatherViewModel
 
 class DetailFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,11 +25,7 @@ class DetailFragment : Fragment() {
         val binding: FragmentDetailBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
 
-        val application = requireNotNull(this.activity).application
-        val dataSource = WeatherDatabase.getInstance(application)
-        val weatherViewModelFactory =
-            WeatherViewModelFactory(WeatherRepository(WeatherNetworkDataSource(), dataSource))
-        val weatherViewModel: WeatherViewModel by viewModels { weatherViewModelFactory }
+        val weatherViewModel: WeatherViewModel by viewModels()
 
         val weatherAdapter = WeatherAdapter()
         binding.weatherRecyclerview.adapter = weatherAdapter

@@ -16,6 +16,7 @@ Using:
 - ROOM
 - WorkManager
 - Dependency injection (Hilt)
+- Unit test
 
 # Screenshot
 
