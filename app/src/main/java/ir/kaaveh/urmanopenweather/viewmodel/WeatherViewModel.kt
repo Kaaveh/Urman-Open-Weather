@@ -1,12 +1,13 @@
 package ir.kaaveh.urmanopenweather.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ir.kaaveh.urmanopenweather.model.Weather
 import ir.kaaveh.urmanopenweather.repository.WeatherRepository
 
-class WeatherViewModel(
+class WeatherViewModel @ViewModelInject constructor(
     weatherRepository: WeatherRepository
 ) : ViewModel() {
     private var _currentWeather = MutableLiveData<Weather>()

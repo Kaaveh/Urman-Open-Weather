@@ -10,11 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ir.kaaveh.urmanopenweather.R
 import ir.kaaveh.urmanopenweather.databinding.FragmentMainBinding
-import ir.kaaveh.urmanopenweather.repository.WeatherRepository
-import ir.kaaveh.urmanopenweather.repository.db.WeatherDatabase
-import ir.kaaveh.urmanopenweather.repository.network.WeatherNetworkDataSource
 import ir.kaaveh.urmanopenweather.viewmodel.WeatherViewModel
-import ir.kaaveh.urmanopenweather.viewmodel.WeatherViewModelFactory
 
 class MainFragment : Fragment() {
 
@@ -26,11 +22,7 @@ class MainFragment : Fragment() {
         val binding: FragmentMainBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
 
-        val application = requireNotNull(this.activity).application
-        val dataSource = WeatherDatabase.getInstance(application)
-        val weatherViewModelFactory =
-            WeatherViewModelFactory(WeatherRepository(WeatherNetworkDataSource(), dataSource))
-        val weatherViewModel: WeatherViewModel by viewModels { weatherViewModelFactory }
+        val weatherViewModel: WeatherViewModel by viewModels()
 
         weatherViewModel.currentWeather.observe(viewLifecycleOwner, { newWeather ->
             binding.weather = newWeather

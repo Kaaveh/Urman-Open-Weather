@@ -15,6 +15,7 @@ Using:
 - Navigation
 - ROOM
 - WorkManager
+- Dependency injection (Hilt)
 
 # Screenshot
 

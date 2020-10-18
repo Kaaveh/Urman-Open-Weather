@@ -14,7 +14,6 @@ import ir.kaaveh.urmanopenweather.repository.WeatherRepository
 import ir.kaaveh.urmanopenweather.repository.db.WeatherDatabase
 import ir.kaaveh.urmanopenweather.repository.network.WeatherNetworkDataSource
 import ir.kaaveh.urmanopenweather.viewmodel.WeatherViewModel
-import ir.kaaveh.urmanopenweather.viewmodel.WeatherViewModelFactory
 
 class DetailFragment : Fragment() {
 

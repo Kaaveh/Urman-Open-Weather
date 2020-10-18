@@ -6,8 +6,9 @@ import ir.kaaveh.urmanopenweather.repository.network.asDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class WeatherRepository(
+class WeatherRepository @Inject constructor(
     private val weatherNetworkDataSource: WeatherNetworkDataSource,
     private val weatherDatabase: WeatherDatabase
 ) {
